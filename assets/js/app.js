@@ -11,6 +11,8 @@ var _headerFix = _interopRequireDefault(require("./temp-modules/header-fix"));
 
 var _scrollSmooth = _interopRequireDefault(require("./temp-modules/scroll-smooth"));
 
+var _cookieBanner = _interopRequireDefault(require("./modules/cookie-banner"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 // You can write a call and import your functions in this file.
@@ -33,13 +35,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
     AOS.init({
       delay: 500,
       duration: 1000
-    }); // video
+    });
+
+    _cookieBanner["default"].init(); // video
+
 
     document.querySelector('.main-video').playbackRate = 0.8;
   });
 })(jQuery);
 
-},{"./modules/burger-menu":2,"./modules/popup":3,"./modules/send-form":4,"./temp-modules/header-fix":5,"./temp-modules/scroll-smooth":6}],2:[function(require,module,exports){
+},{"./modules/burger-menu":2,"./modules/cookie-banner":3,"./modules/popup":4,"./modules/send-form":5,"./temp-modules/header-fix":6,"./temp-modules/scroll-smooth":7}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -75,6 +80,43 @@ var _default = burgerMenu;
 exports["default"] = _default;
 
 },{}],3:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+// cookie banner
+var cookieBanner = function () {
+  var cookieWrap = document.querySelector('.cookie-wrap');
+  var cookieButton = document.querySelector('.cookie-btn');
+
+  var showBanner = function showBanner() {
+    cookieButton.addEventListener('click', function () {
+      cookieWrap.classList.remove('active');
+      localStorage.setItem('cookieBannerDisplayed', 'true');
+    });
+    setTimeout(function () {
+      if (!localStorage.getItem('cookieBannerDisplayed')) {
+        cookieWrap.classList.add('active');
+      }
+    }, 2000);
+  };
+
+  var init = function init() {
+    showBanner();
+  };
+
+  return {
+    init: init
+  };
+}();
+
+var _default = cookieBanner;
+exports["default"] = _default;
+
+},{}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -147,7 +189,7 @@ var popups = function () {
 var _default = popups;
 exports["default"] = _default;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -294,7 +336,7 @@ var sendForm = function () {
 var _default = sendForm;
 exports["default"] = _default;
 
-},{"./popup":3}],5:[function(require,module,exports){
+},{"./popup":4}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -328,7 +370,7 @@ var headerFixed = function () {
 var _default = headerFixed;
 exports["default"] = _default;
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

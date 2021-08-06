@@ -1,6 +1,6 @@
 <?php
 
-$toEmail = 'info@marwahundpartner.com';
+$toEmail = 'raj@hotmail.com';
 
 function send_mail($toEmail, $emailSubject, $body, $headers, $data){
     if (mail($toEmail, $emailSubject, $body, $headers)) {
